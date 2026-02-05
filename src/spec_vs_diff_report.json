@@ -1,0 +1,48 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-05T18:54:19.075Z",
+  "summary": "The diff adds a ThemeModeDialog modal with Light/Dark/System radio options and adds a gear icon button in Dashboard header to open it. However, there is no diff evidence that theme preference persistence and system-following behavior are wired via the app’s existing ThemeProvider/theming setup, and the Dashboard file includes additional visual/animation changes beyond the requested icon+modal.",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Implement theme selection logic using the app’s existing theming approach so that selecting Light/Dark/System applies instantly (no page reload), persists locally, manual overrides system, and System Default follows device settings.",
+      "reason": "Theme selection UI is present and calls next-themes setTheme, but the diff does not show the required ThemeProvider/theming configuration or any explicit local persistence/system-follow wiring. No changes to App/main entry files are shown to confirm persistence across sessions or system-default behavior.",
+      "evidence": [
+        "frontend/src/components/ThemeModeDialog.tsx",
+        "frontend/src/pages/Dashboard.tsx",
+        "frontend-file-summaries.txt (mentions App.tsx ThemeProvider but App.tsx is not included/modified in this diff)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Added/modified dashboard-wide color transition animation (transition-colors duration-300) not requested and conflicts with the constraint/AC of not introducing additional theme-related animations beyond what already exists.",
+      "reason": "BuildRequest explicitly disallows adding additional theme-related animations; the diff shows a new transition on the Dashboard root container.",
+      "evidence": [
+        "frontend/src/pages/Dashboard.tsx"
+      ]
+    },
+    {
+      "description": "Additional header styling changes (backdrop blur, border opacity, and shadow changes) beyond adding the settings icon.",
+      "reason": "REQ-1/REQ-4 require the dashboard to look identical aside from the new control and explicitly forbid modifying existing dashboard visuals; the diff shows multiple header class additions/changes unrelated to the icon.",
+      "evidence": [
+        "frontend/src/pages/Dashboard.tsx"
+      ]
+    },
+    {
+      "description": "Added a dark-mode background pattern overlay element to the Dashboard.",
+      "reason": "Not requested; also likely a dashboard visual change beyond the icon/modal, which is disallowed by REQ-4 constraints.",
+      "evidence": [
+        "frontend/src/pages/Dashboard.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/ThemeModeDialog.tsx",
+    "frontend/src/pages/Dashboard.tsx",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 3,
+  "summary": "Add an in-app manual theme selector (Light/Dark/System Default) accessible via a subtle settings icon in the dashboard header, applying instantly with no layout/styling changes and persisting via local storage while respecting system preference when set to System Default.",
+  "architectural_notes": [
+    "Theme preference persistence: store user selection in localStorage (manual overrides system; System Default follows device setting).",
+    "Theme application must be instant client-side (no reload), with zero layout shift and no additional animations."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-add-a-subtle-settings-gear-icon-control-to-the-top-right-area-of-the-existing-dashboard-header-without-changing-the-current-layout-hierarchy-spacing-typography-sizing-or-moving-any-existing-components-the-dashboard-must-look-identical-aside-from-the-new-control",
+      "title": "Add a subtle settings (gear) icon control to the top-right area of the existing Dashboard header without changing the current layout, hierarchy, spacing, typography, sizing, or moving any existing components (the dashboard must look identical aside from the new control).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-clicking-the-header-settings-icon-open-a-clean-minimal-modal-no-heavy-borders-no-playful-styling-that-contains-only-theme-mode-controls-light-dark-and-system-default-system-default-is-the-recommended-default-selection-shown",
+      "title": "On clicking the header settings icon, open a clean, minimal modal (no heavy borders, no playful styling) that contains ONLY theme mode controls: Light, Dark, and System Default (System Default is the recommended default selection shown).",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-theme-selection-logic-using-the-app-s-existing-theming-approach-so-that-selecting-light-dark-system-applies-instantly-no-page-reload-produces-no-layout-shift-and-persists-the-user-s-preference-locally-localstorage-or-equivalent-manual-selection-overrides-system-preference-system-default-follows-device-settings",
+      "title": "Implement theme selection logic using the app’s existing theming approach so that selecting Light/Dark/System applies instantly (no page reload), produces no layout shift, and persists the user’s preference locally (localStorage or equivalent): manual selection overrides system preference; System Default follows device settings.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-accessibility-and-readability-remain-strong-in-both-light-and-dark-themes-after-adding-the-theme-switcher-and-do-not-modify-any-existing-dashboard-visuals-including-reverselifeclock-styling-and-executionscore-visuals-beyond-enabling-manual-selection-of-the-already-existing-themes",
+      "title": "Ensure accessibility and readability remain strong in both Light and Dark themes after adding the theme switcher, and do not modify any existing dashboard visuals (including ReverseLifeClock styling and ExecutionScore visuals) beyond enabling manual selection of the already-existing themes.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Add subtle gear icon (top-right dashboard header) opening minimal modal to select Light/Dark/System Default theme; apply instantly without layout/styling changes; persist preference via localStorage and respect system when set to System Default",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "projectName": "Add in-app theme mode switcher (Light/Dark/System) via subtle header settings icon",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

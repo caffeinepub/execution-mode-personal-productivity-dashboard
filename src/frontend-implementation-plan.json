@@ -1,0 +1,95 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "In-app theme mode switcher (Light/Dark/System) via Dashboard header gear icon + minimal modal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add a subtle, accessible gear icon control in the top-right of the Dashboard header without shifting existing header content.",
+      "acceptanceCriteria": [
+        "A small gear/settings icon is visible in the Dashboard header at the top-right.",
+        "The existing header title and TimeBasedMessage remain in their current positions with no perceivable layout shift (no changes to spacing, font sizes, alignment, or element sizes).",
+        "The icon uses low visual weight (no bright colors, no large button) and matches the existing design language.",
+        "The icon is keyboard-focusable and has an accessible name (e.g., aria-label=\"Theme settings\")."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/gear-icon-transparent.dim_24x24.png",
+          "operation": "create",
+          "description": "Add the generated gear icon asset at this exact path so it can be referenced by the Dashboard header control."
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Add a subtle, keyboard-focusable header icon button (using the asset at frontend/public/assets/generated/gear-icon-transparent.dim_24x24.png) positioned in the header’s top-right using out-of-flow positioning so the existing h1 and TimeBasedMessage layout/spacing remain unchanged; include an accessible name (aria-label=\"Theme settings\") and wire it to open the theme modal."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Open a minimal modal from the header gear icon containing only Light/Dark/System theme mode controls using a segmented/radio-style selector.",
+      "acceptanceCriteria": [
+        "Clicking the gear icon opens a modal dialog.",
+        "The modal contains only the three theme choices (Light, Dark, System Default) and no other settings.",
+        "The theme selector is implemented as a segmented control or radio-style selector (not a dropdown, not a color picker).",
+        "Modal styling matches the existing premium look (minimal, restrained) and does not introduce new accent colors."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ThemeModeDialog.tsx",
+          "operation": "create",
+          "description": "Create a clean, minimal modal dialog component that renders only three theme options (Light, Dark, System Default) as a segmented/radio-style control; implement accessible dialog semantics (role=\"dialog\", aria-modal, focus management, Escape/backdrop close) and keep styling restrained using existing Tailwind tokens; use the shadcn-ui component library where applicable (Verify the component's usage instructions before implementing.)"
+        },
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Wire the header gear icon to open/close ThemeModeDialog and ensure no additional settings or UI elements appear in the modal beyond the three theme choices."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Apply Light/Dark/System selection instantly with persistence, using the app’s existing theming approach (manual overrides system; system follows device).",
+      "acceptanceCriteria": [
+        "Selecting Light applies the light theme immediately without a page reload.",
+        "Selecting Dark applies the dark theme immediately without a page reload.",
+        "Selecting System Default makes the app follow the OS/device theme setting.",
+        "The chosen setting persists across browser refreshes and new sessions via local persistence.",
+        "No additional theme-related animations are introduced beyond what already exists in the app."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ThemeModeDialog.tsx",
+          "operation": "modify",
+          "description": "Use the existing ThemeProvider setup (next-themes) by calling its theme setter to switch between 'light', 'dark', and 'system' instantly; ensure the selected value is reflected in the control state and relies on next-themes/local persistence for restoring the user’s preference on reload."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Confirm the existing ThemeProvider configuration continues to support instant theme switching and persisted user choice with system fallback; keep defaultTheme as 'system' and avoid introducing new animations or layout-affecting wrappers."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Maintain accessibility/contrast across themes while ensuring no existing dashboard visuals are modified beyond adding the icon and modal.",
+      "acceptanceCriteria": [
+        "No changes are made to existing component styling (ReverseLifeClock, ExecutionScore, cards, typography, spacing) besides the addition of the settings icon and modal.",
+        "The theme switcher UI maintains sufficient contrast in both themes (icon, modal text, and selection states remain clearly readable).",
+        "No new settings, pages, or theme customization options are introduced."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/Dashboard.tsx",
+          "operation": "modify",
+          "description": "Ensure the added header icon button and modal mount do not alter existing Dashboard component structure/visuals (no changes to ReverseLifeClock, ExecutionScore, card styling, typography, spacing); keep additions isolated to the header overlay control and modal rendering."
+        },
+        {
+          "path": "frontend/src/components/ThemeModeDialog.tsx",
+          "operation": "modify",
+          "description": "Ensure theme switcher UI meets readability/contrast expectations in both light and dark modes using existing theme tokens (foreground/background/border/muted) and standard focus-visible styling; do not introduce new accent colors or additional settings."
+        }
+      ]
+    }
+  ]
+}

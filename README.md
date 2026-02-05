@@ -1,2 +1,3 @@
-# execution-mode-personal-productivity-dashboard
-Exported from Caffeine project: Add in-app theme mode switcher (Light/Dark/System) via subtle header settings icon
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`

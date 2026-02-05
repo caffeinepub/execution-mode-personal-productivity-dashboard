@@ -1,0 +1,31 @@
+{
+  "name": "Execution Mode - Personal Productivity Dashboard",
+  "short_name": "Execution Mode",
+  "description": "High-performance personal productivity dashboard focused on daily discipline and behavioral pressure",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#1a4d8f",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/assets/generated/timer-icon-transparent.dim_64x64.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/generated/timer-icon-transparent.dim_64x64.png",
+      "sizes": "64x64",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/generated/trophy-icon-transparent.dim_64x64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["productivity", "lifestyle"],
+  "screenshots": []
+}

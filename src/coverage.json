@@ -1,0 +1,77 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-05T18:54:19.077Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Add a subtle settings (gear) icon control to the top-right area of the existing Dashboard header without changing the current layout, hierarchy, spacing, typography, sizing, or moving any existing components (the dashboard must look identical aside from the new control).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/gear-icon-transparent.dim_24x24.png",
+          "frontend/src/pages/Dashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/Dashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "On clicking the header settings icon, open a clean, minimal modal (no heavy borders, no playful styling) that contains ONLY theme mode controls: Light, Dark, and System Default (System Default is the recommended default selection shown).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ThemeModeDialog.tsx",
+          "frontend/src/pages/Dashboard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ThemeModeDialog.tsx",
+          "frontend/src/pages/Dashboard.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Implement theme selection logic using the app’s existing theming approach so that selecting Light/Dark/System applies instantly (no page reload), produces no layout shift, and persists the user’s preference locally (localStorage or equivalent): manual selection overrides system preference; System Default follows device settings.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ThemeModeDialog.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ThemeModeDialog.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Ensure accessibility and readability remain strong in both Light and Dark themes after adding the theme switcher, and do not modify any existing dashboard visuals (including ReverseLifeClock styling and ExecutionScore visuals) beyond enabling manual selection of the already-existing themes.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/Dashboard.tsx",
+          "frontend/src/components/ThemeModeDialog.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/Dashboard.tsx",
+          "frontend/src/components/ThemeModeDialog.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/ThemeModeDialog.tsx",
+    "frontend/src/pages/Dashboard.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

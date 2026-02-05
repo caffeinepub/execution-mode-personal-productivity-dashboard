@@ -1,0 +1,122 @@
+{
+  "kind": "build_request",
+  "title": "Add in-app theme mode switcher (Light/Dark/System) via subtle header settings icon",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Add a subtle settings (gear) icon control to the top-right area of the existing Dashboard header without changing the current layout, hierarchy, spacing, typography, sizing, or moving any existing components (the dashboard must look identical aside from the new control).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-USER-1",
+          "msg-USER-2"
+        ],
+        "quotes": [
+          "Add a small gear/settings icon in the top-right corner of the dashboard header.",
+          "Add a manual theme-color switcher inside the app with ZERO impact on the current layout, hierarchy, styling, or component structure."
+        ]
+      },
+      "acceptanceCriteria": [
+        "A small gear/settings icon is visible in the Dashboard header at the top-right.",
+        "The existing header title and TimeBasedMessage remain in their current positions with no perceivable layout shift (no changes to spacing, font sizes, alignment, or element sizes).",
+        "The icon uses low visual weight (no bright colors, no large button) and matches the existing design language.",
+        "The icon is keyboard-focusable and has an accessible name (e.g., aria-label=\"Theme settings\")."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "On clicking the header settings icon, open a clean, minimal modal (no heavy borders, no playful styling) that contains ONLY theme mode controls: Light, Dark, and System Default (System Default is the recommended default selection shown).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-USER-1"
+        ],
+        "quotes": [
+          "When clicked → open a clean, minimal modal.",
+          "Inside the Modal — Theme Options ONLY",
+          "Provide three choices: ✅ Light ✅ Dark ✅ System Default (recommended as default)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking the gear icon opens a modal dialog.",
+        "The modal contains only the three theme choices (Light, Dark, System Default) and no other settings.",
+        "The theme selector is implemented as a segmented control or radio-style selector (not a dropdown, not a color picker).",
+        "Modal styling matches the existing premium look (minimal, restrained) and does not introduce new accent colors."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Implement theme selection logic using the app’s existing theming approach so that selecting Light/Dark/System applies instantly (no page reload), produces no layout shift, and persists the user’s preference locally (localStorage or equivalent): manual selection overrides system preference; System Default follows device settings.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-USER-1"
+        ],
+        "quotes": [
+          "Allow users to manually select Light Mode or Dark Mode without relying solely on system settings.",
+          "When the user selects a theme: ✅ Apply instantly ✅ No page reload ✅ No layout shift",
+          "Store the user preference locally using localStorage (or equivalent).",
+          "If the user selects a manual theme → override system preference If \"System Default\" is selected → follow device settings"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Selecting Light applies the light theme immediately without a page reload.",
+        "Selecting Dark applies the dark theme immediately without a page reload.",
+        "Selecting System Default makes the app follow the OS/device theme setting.",
+        "The chosen setting persists across browser refreshes and new sessions via local persistence.",
+        "No additional theme-related animations are introduced beyond what already exists in the app."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Ensure accessibility and readability remain strong in both Light and Dark themes after adding the theme switcher, and do not modify any existing dashboard visuals (including ReverseLifeClock styling and ExecutionScore visuals) beyond enabling manual selection of the already-existing themes.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-USER-1"
+        ],
+        "quotes": [
+          "Ensure contrast remains strong in both themes. Never allow low-visibility states. Readability is priority.",
+          "Do NOT modify the reverse clock styling",
+          "Do NOT change execution score visuals",
+          "Simply allow the existing dark/light themes to be selected manually. Nothing else."
+        ]
+      },
+      "acceptanceCriteria": [
+        "No changes are made to existing component styling (ReverseLifeClock, ExecutionScore, cards, typography, spacing) besides the addition of the settings icon and modal.",
+        "The theme switcher UI maintains sufficient contrast in both themes (icon, modal text, and selection states remain clearly readable).",
+        "No new settings, pages, or theme customization options are introduced."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not redesign anything in the dashboard.",
+    "Do not move components or change hierarchy.",
+    "Do not resize elements or modify typography/spacing/cards.",
+    "Do not introduce new accent colors, color pickers, or custom color selection.",
+    "Do not create a settings page; use only a minimal modal opened from the header icon.",
+    "Do not add additional settings beyond theme mode selection.",
+    "Do not modify ReverseLifeClock styling or ExecutionScore visuals.",
+    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui (compose existing UI components instead)."
+  ],
+  "nonGoals": [
+    "Adding additional appearance settings (font size, density, accent color, etc.).",
+    "Changing existing light/dark theme token values or restyling existing dashboard components.",
+    "Backend/canister changes (not required for local theme preference)."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}
