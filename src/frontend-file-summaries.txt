@@ -11,7 +11,7 @@
   "frontend/src/components/ExecutionScore.tsx": "Bold execution score badge that shows \"Status: Awaiting today's execution.\" before any study is logged AND before midday, then displays tier labels (Critical/Below Standard/On Target/Elite/Savage) based on daily hours with high-contrast typography and confident color tones.",
   "frontend/src/components/TimeBasedMessage.tsx": "Shows contextual messages based on time of day (morning motivation, night evaluation).",
   "frontend/src/components/Footer.tsx": "Footer with attribution to caffeine.ai and heart icon.",
-  "frontend/src/hooks/useQueries.ts": "Custom React Query hooks for fetching quotes and managing study data with localStorage persistence, now includes getDailyProgressData for bar chart and dispatchStudyUpdate for cross-component synchronization via custom events.",
+  "frontend/src/hooks/useQueries.ts": "Custom React Query hooks for fetching quotes and managing study data with localStorage persistence, now includes day-rollover detection via interval and focus listeners that updates the queryKey to trigger automatic quote refresh when the calendar day changes.",
   "frontend/src/index.css": "Global styles with OKLCH color system defining light mode tokens in :root and preserving exact dark mode tokens in .dark class, includes theme-aware heatmap variables and dark-mode-only gradient background.",
   "frontend/src/components/ForwardLifeClock.tsx": "Reduced prominence forward life-clock with 10-15% smaller size, lower brightness, thinner typography while maintaining readability and smooth animations.",
   "frontend/src/components/ChronographTimer.tsx": "Enhanced chronograph timer with thicker circular progress ring, soft neon edge glow when active, integrated No Zero Days indicator, and now includes StudyProgressBarChart directly below StudyHeatmap.",
@@ -24,5 +24,6 @@
   "frontend/src/components/GoalEditor.tsx": "Modal component for goal management with goal name input, target/start date pickers, safety confirmation dialog with option to keep or reset historical study data, smooth transitions for goal updates, and custom event dispatch for cross-component synchronization.",
   "frontend/src/components/StudyProgressBarChart.tsx": "Bar chart component displaying last 30 days of study progress with orange/green/muted bars matching heatmap thresholds, minimal axes, live updates synchronized with study session changes, and centralized color management.",
   "frontend/src/lib/studyActivityColors.ts": "Shared color palette and utility functions for study activity visualization with theme-independent activity indicator colors (orange/green/muted) ensuring consistent coloring across heatmap and progress chart components.",
-  "frontend/src/components/ThemeModeDialog.tsx": "Minimal modal dialog for theme selection with Light/Dark/System radio options using next-themes for instant theme switching and automatic persistence."
+  "frontend/src/components/ThemeModeDialog.tsx": "Minimal modal dialog for theme selection with Light/Dark/System radio options using next-themes for instant theme switching and automatic persistence.",
+  "frontend/tailwind.config.js": "Tailwind configuration with explicit responsive breakpoint definitions (sm/md/lg/xl/2xl) ensuring lg:* classes apply correctly at 1024px+ desktop widths, plus existing OKLCH color system and theme extensions."
 }

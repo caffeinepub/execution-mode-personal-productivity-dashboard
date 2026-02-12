@@ -1,18 +1,44 @@
 import { useQuery } from '@tanstack/react-query';
 import { useActor } from './useActor';
 import type { Quote } from '../backend';
+import { useEffect, useState } from 'react';
+
+// Helper to get current date string
+const getTodayString = () => new Date().toDateString();
 
 export function useQuote() {
   const { actor, isFetching } = useActor();
+  const [currentDay, setCurrentDay] = useState(getTodayString());
+
+  // Check for day rollover every minute and on window focus
+  useEffect(() => {
+    const checkDayChange = () => {
+      const today = getTodayString();
+      if (today !== currentDay) {
+        setCurrentDay(today);
+      }
+    };
+
+    // Check every minute for day change
+    const interval = setInterval(checkDayChange, 60000);
+
+    // Also check when window regains focus
+    window.addEventListener('focus', checkDayChange);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('focus', checkDayChange);
+    };
+  }, [currentDay]);
 
   return useQuery<Quote>({
-    queryKey: ['dailyQuote'],
+    queryKey: ['dailyQuote', currentDay],
     queryFn: async () => {
       if (!actor) throw new Error('Actor not initialized');
       
       const cachedQuote = localStorage.getItem('cachedQuote');
       const cacheDate = localStorage.getItem('quoteCacheDate');
-      const today = new Date().toDateString();
+      const today = getTodayString();
 
       if (cachedQuote && cacheDate === today) {
         return JSON.parse(cachedQuote);

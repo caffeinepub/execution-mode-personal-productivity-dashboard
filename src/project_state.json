@@ -1,43 +1,30 @@
 {
   "schemaVersion": "1.0.0",
   "projectStateVersion": 3,
-  "summary": "Add an in-app manual theme selector (Light/Dark/System Default) accessible via a subtle settings icon in the dashboard header, applying instantly with no layout/styling changes and persisting via local storage while respecting system preference when set to System Default.",
+  "summary": "New project",
   "architectural_notes": [
-    "Theme preference persistence: store user selection in localStorage (manual overrides system; System Default follows device setting).",
-    "Theme application must be instant client-side (no reload), with zero layout shift and no additional animations."
+    "Do not redesign or change layout/component structure; only apply minimal logic/CSS fixes.",
+    "Daily quote caching currently uses Date().toDateString(); add day-change detection to refresh quote when date rolls over."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Desktop layout breakpoint not triggering; app shows phone view on desktop.",
+    "Daily quote does not refresh when tab stays open past midnight due to date-based caching logic."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-add-a-subtle-settings-gear-icon-control-to-the-top-right-area-of-the-existing-dashboard-header-without-changing-the-current-layout-hierarchy-spacing-typography-sizing-or-moving-any-existing-components-the-dashboard-must-look-identical-aside-from-the-new-control",
-      "title": "Add a subtle settings (gear) icon control to the top-right area of the existing Dashboard header without changing the current layout, hierarchy, spacing, typography, sizing, or moving any existing components (the dashboard must look identical aside from the new control).",
+      "id": "feature-fix-the-responsive-layout-so-the-dashboard-renders-its-intended-desktop-layout-on-large-screens-e-g-lg-grid-cols-2-and-lg-grid-cols-3-in-frontend-src-pages-dashboard-tsx-instead-of-remaining-in-a-phone-mobile-layout-on-desktop-without-changing-the-existing-visual-design-component-structure-or-content",
+      "title": "Fix the responsive layout so the dashboard renders its intended desktop layout on large screens (e.g., `lg:grid-cols-2` and `lg:grid-cols-3` in `frontend/src/pages/Dashboard.tsx`) instead of remaining in a phone/mobile layout on desktop, without changing the existing visual design, component structure, or content.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-on-clicking-the-header-settings-icon-open-a-clean-minimal-modal-no-heavy-borders-no-playful-styling-that-contains-only-theme-mode-controls-light-dark-and-system-default-system-default-is-the-recommended-default-selection-shown",
-      "title": "On clicking the header settings icon, open a clean, minimal modal (no heavy borders, no playful styling) that contains ONLY theme mode controls: Light, Dark, and System Default (System Default is the recommended default selection shown).",
+      "id": "feature-update-the-daily-quote-behavior-so-the-quote-automatically-updates-when-the-calendar-day-changes-including-when-the-tab-remains-open-past-midnight-while-preserving-the-existing-localstorage-cache-behavior-and-keeping-the-dailyquote-ui-markup-unchanged",
+      "title": "Update the daily quote behavior so the quote automatically updates when the calendar day changes (including when the tab remains open past midnight), while preserving the existing localStorage cache behavior and keeping the DailyQuote UI/markup unchanged.",
       "reqIds": [
         "REQ-2"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-implement-theme-selection-logic-using-the-app-s-existing-theming-approach-so-that-selecting-light-dark-system-applies-instantly-no-page-reload-produces-no-layout-shift-and-persists-the-user-s-preference-locally-localstorage-or-equivalent-manual-selection-overrides-system-preference-system-default-follows-device-settings",
-      "title": "Implement theme selection logic using the app’s existing theming approach so that selecting Light/Dark/System applies instantly (no page reload), produces no layout shift, and persists the user’s preference locally (localStorage or equivalent): manual selection overrides system preference; System Default follows device settings.",
-      "reqIds": [
-        "REQ-3"
-      ],
-      "version": 1
-    },
-    {
-      "id": "feature-ensure-accessibility-and-readability-remain-strong-in-both-light-and-dark-themes-after-adding-the-theme-switcher-and-do-not-modify-any-existing-dashboard-visuals-including-reverselifeclock-styling-and-executionscore-visuals-beyond-enabling-manual-selection-of-the-already-existing-themes",
-      "title": "Ensure accessibility and readability remain strong in both Light and Dark themes after adding the theme switcher, and do not modify any existing dashboard visuals (including ReverseLifeClock styling and ExecutionScore visuals) beyond enabling manual selection of the already-existing themes.",
-      "reqIds": [
-        "REQ-4"
       ],
       "version": 1
     }
@@ -45,12 +32,18 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Add subtle gear icon (top-right dashboard header) opening minimal modal to select Light/Dark/System Default theme; apply instantly without layout/styling changes; persist preference via localStorage and respect system when set to System Default",
+      "summary": "Fix responsive layout so desktop view renders correctly on large screens (currently stuck in phone view) without redesigning UI",
       "reqIds": [],
-      "status": "pending"
+      "status": "in_progress"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Fix daily quotes so they update automatically each new calendar day (handle tab left open past midnight) while keeping existing cache/visuals",
+      "reqIds": [],
+      "status": "in_progress"
     }
   ],
-  "projectName": "Add in-app theme mode switcher (Light/Dark/System) via subtle header settings icon",
+  "projectName": "Fix desktop responsive layout and ensure DailyQuote refreshes at each new calendar day",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

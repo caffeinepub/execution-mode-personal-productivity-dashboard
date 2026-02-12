@@ -1,12 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Add an in-app theme mode switcher (Light/Dark/System Default) accessed via a subtle settings icon in the Dashboard header, without changing the existing dashboard layout or visuals.
+**Goal:** Ensure the dashboard shows its intended desktop multi-column layout on large screens and make the DailyQuote automatically refresh when the calendar day changes, without redesigning anything.
 
 **Planned changes:**
-- Add a small, low-visual-weight gear/settings icon control to the top-right of the existing Dashboard header, keeping all current header elements in the exact same positions and styling.
-- Open a clean, minimal modal when the icon is clicked that contains only three theme mode options: Light, Dark, and System Default (recommended default selection).
-- Implement instant theme switching (no reload, no layout shift) using the app’s existing theming approach, with local persistence (e.g., localStorage) so manual selection overrides system preference and System Default follows OS/device settings.
-- Ensure the new icon and modal remain accessible (keyboard focus, accessible name) and readable/contrast-safe in both Light and Dark themes, without altering existing dashboard component visuals.
+- Fix dashboard responsive behavior so `lg:*` grid classes apply correctly on desktop widths (≥ 1024px) while preserving the current mobile single-column layout.
+- Update DailyQuote refresh logic to detect calendar day changes (including when the tab stays open past midnight) and fetch/activate a new quote for the new day while keeping the existing localStorage caching keys/behavior and UI unchanged.
 
-**User-visible outcome:** Users can click a subtle settings icon in the Dashboard header to choose Light, Dark, or System Default theme mode, with the preference applied immediately and remembered across sessions.
+**User-visible outcome:** On desktop, the dashboard displays in the intended multi-column layout; the daily quote updates automatically each new day even if the page remains open, while staying the same throughout a given day.
